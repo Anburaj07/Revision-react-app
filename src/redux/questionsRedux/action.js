@@ -1,8 +1,11 @@
 import axios from "axios";
 import { FAILURE, GET_QUES_SUCCESS, POST_SCORE, REQUEST } from "./actionTypes";
 
-const getQuestSuccessAction = (payload) => {
-  return { type: GET_QUES_SUCCESS, payload };
+const getQuestSuccessAction = (questions,name) => {
+  return { type: GET_QUES_SUCCESS, payload:{
+    questions,
+    name
+  } };
 };
 const requestAction = () => {
   return { type: REQUEST };
@@ -27,7 +30,7 @@ const postScoreAction = (
   };
 };
 
-export const getQuestions = (Questions, Category, Difficulty) => (dispatch) => {
+export const getQuestions = (name,Questions, Category, Difficulty) => (dispatch) => {
   dispatch(requestAction());
   return axios
     .get(
@@ -35,7 +38,7 @@ export const getQuestions = (Questions, Category, Difficulty) => (dispatch) => {
     )
     .then((res) => {
       console.log(res.data.results);
-      dispatch(getQuestSuccessAction(res.data.results));
+      dispatch(getQuestSuccessAction(res.data.results,name));
     })
     .catch((err) => {
       dispatch(failureAction());
@@ -44,7 +47,7 @@ export const getQuestions = (Questions, Category, Difficulty) => (dispatch) => {
 };
 
 export const postScore =
-  (score, CorrectAnswersCount, InCorrectAnswersCount, Percentage) =>
+  (score, CorrectAnswersCount, InCorrectAnswersCount, Percentage,name) =>
   (dispatch) => {
     console.log(score, CorrectAnswersCount, InCorrectAnswersCount, Percentage);
     dispatch(
@@ -55,4 +58,15 @@ export const postScore =
         Percentage
       )
     );
+    let obj={
+        name,
+        scores:score
+    }
+    axios.post(`https://quiz-server-bue2.onrender.com/users`,obj)
+    .then((res)=>{
+        console.log(res.data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
   };

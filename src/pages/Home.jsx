@@ -16,7 +16,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name, Category, Difficulty, Questions);
-    dispatch(getQuestions(+Questions, +Category, Difficulty)).then(() => {
+    dispatch(getQuestions(name,+Questions, +Category, Difficulty)).then(() => {
       navigate("/quiz");
     });
   };

@@ -27,6 +27,8 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 p{
     font-size: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 p:hover{
     cursor: pointer;

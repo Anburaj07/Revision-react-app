@@ -21,6 +21,9 @@ const Quiz = () => {
   const [Percentage,setPercentage]=useState(0)
   const dispatch=useDispatch();
   const navigate = useNavigate();
+  const name = useSelector((store) => {
+    return store.quizReducer.name;
+  });
 
   const handleOptions=(ans)=>{
     // console.log(ans)
@@ -52,7 +55,7 @@ const Quiz = () => {
   },[currentQuestion])
 
   const handleSubmit = () => {    
-    dispatch(postScore(score,CorrectAnswersCount,InCorrectAnswersCount,Percentage))
+    dispatch(postScore(score,CorrectAnswersCount,InCorrectAnswersCount,Percentage,name))
     navigate('/results')
   };
   return (

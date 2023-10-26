@@ -4,16 +4,23 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const Results = () => {
-    const score = useSelector((store) => {
+    const questions = useSelector((store) => {
+        return store.quizReducer.questions;
+      });
+      let total=questions.length
+      const score = useSelector((store) => {
         return store.quizReducer.score;
+      });
+      const name = useSelector((store) => {
+        return store.quizReducer.name;
       });
       const Percentage = useSelector((store) => {
         return store.quizReducer.Percentage;
       });
   return (
     <DIV>
-        <Heading>Your Results</Heading>
-        <Text fontSize='xl'>Score: {score}</Text>
+        <Heading as='h2' size='lg'>Hey {name} Your Results</Heading>
+        <Text fontSize='xl'>Score: {score} out of {`${total}0`}</Text>
         <Text fontSize='xl'>Percentage: {`${Percentage}%`}</Text>
     </DIV>
   )
@@ -32,5 +39,9 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 p{
     padding: 1%;
+}
+
+h2{
+  color: #97266D;
 }
 `

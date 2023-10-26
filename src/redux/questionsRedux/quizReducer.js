@@ -1,6 +1,7 @@
 import { FAILURE, GET_QUES_SUCCESS, POST_SCORE, REQUEST } from "./actionTypes"
 
 const initstate={
+    name:'',
     questions:[],
     loading:false,
     error:false,
@@ -16,7 +17,7 @@ export const quizReducer=(state=initstate,{type,payload})=>{
             return{...state,loading:true}
         }
         case GET_QUES_SUCCESS:{
-            return{...state,loading:false,questions:payload}
+            return{...state,loading:false,questions:payload.questions,name:payload.name}
         }
         case FAILURE:{
             return{...state,loading:false,error:true}

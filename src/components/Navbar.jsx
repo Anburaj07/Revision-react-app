@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <DIV>
         <Link to='/'>
-            <Heading>Masai Quiz</Heading>
+            <Heading as='h3' size='lg'>Masai Quiz</Heading>
         </Link>
         <Link to='/dashboard'>
             <Heading as='h3' size='lg'>Dashboard</Heading>
@@ -23,4 +23,7 @@ display: flex;
 justify-content: space-around;
 background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(176,229,208,1) 42%, rgba(92,202,238,0.41) 93.6% );
 padding: 1%;
+h3{
+    color: #054728;
+}
 `
